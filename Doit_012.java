@@ -11,6 +11,10 @@ public class BOJ10989 {
 		int[] counts = new int[MAX + 1];
 		int maxVal = Integer.MIN_VALUE;
 
+		/**
+		 * 각 인덱스의 값을 다른 배열(counts)의 인덱스로 생각하여 해당 값이 나온 횟수를 배열에 저장하고 마지막에 
+		 * counts 배열의 값만큼 인덱스를 출력한다.
+		 */
 		for (int i = 0; i < N; i++) {
 			int inputNum = Integer.parseInt(br.readLine());
 			counts[inputNum]++;

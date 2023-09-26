@@ -22,6 +22,10 @@ public class BOJ1427 {
 		bw.close();
 	}
 
+	/**
+	 * 각 인덱스를 for문으로 돌면서 해당 인덱스를 기준으로 오른쪽 방향에 자신보다 작은 값이 있으면, 그 값을 minIdx로 대체하고 해당 값과 기준 값을 바꾼다.
+	 * 가장 작은 값을 선택하여 swap하는 것이므로 선택정렬이다.
+	 */
 	static void selectionSort(int[] nums) {
 		for (int i = 0; i < nums.length - 1; i++) {
 			int minIdx = i;

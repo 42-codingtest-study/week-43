@@ -21,6 +21,9 @@ public class BOJ11399 {
 		bw.close();
 	}
 
+	/**
+	 * 각 인덱스의 값을 돌면서 해당 값의 좌측 부분의 모든 요소를 탐색하면서 보다 큰 값을 key값이 들어갈 부분의 오른쪽으로 이동시키고 마지막에 key값을 넣는다.
+	 */
 	static void insertionSort(int[] nums) {
 		for (int i = 1; i < nums.length; i++) {
 			int key = nums[i];

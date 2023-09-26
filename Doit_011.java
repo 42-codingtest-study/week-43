@@ -41,6 +41,10 @@ public class BOJ1517 {
 			if (leftArr[l] <= rightArr[r]) {
 				inputNums[i++] = leftArr[l++];
 			} else {
+				/**
+				 * leftArr에 있는 원소가 rightArr에 있는 원소보다 크다면 값의 순서가 바뀐다. 그러므로 이 조건에서만 머지소트에서 swap이 일어난다고 볼 수 있다.
+				 * leftArr의 길이 중에서 l의 위치를 뺀 나머지 칸들이 해당 인덱스가 이동한 횟수이므로, 이를 축적한다.
+				 */
 				inputNums[i++] = rightArr[r++];
 				sum += leftArr.length - l;
 			}

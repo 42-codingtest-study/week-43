@@ -15,9 +15,12 @@ public class BOJ2164 {
 			queue.add(i);
 		}
 
-		while (queue.size() != 1) {
-			queue.poll();
-			queue.add(queue.poll());
+		/**
+		 * 먼저 뺀 것은 버리고, 그 다음에 뺀 것은 다시 위에 올리는 것
+		 */
+		while (queue.size() != 1) { // 카드가 한 장 남았을 때, 멈춘다.
+			queue.poll(); // 먼저 뺀 것은 버리고
+			queue.add(queue.poll()); // 그 다음에 뺀 것은 다시 위에 올린다.
 		}
 
 		bw.write(queue.peek() + "\n");

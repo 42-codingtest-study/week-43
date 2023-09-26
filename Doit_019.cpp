@@ -37,7 +37,8 @@ void quickSort(vector<int> &vec, int s, int e, int k) {
   int pivot = partition(vec, s, e);
 
   if (pivot == k) {
-    cout << vec[pivot] << endl;
+    // cout << vec[pivot] << endl;
+    printf("%d\n", vec[pivot]);
     return;
   } else if (pivot > k) {
     quickSort(vec, s, pivot - 1, k);
@@ -46,15 +47,17 @@ void quickSort(vector<int> &vec, int s, int e, int k) {
   }
 }
 int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-  cout.tie(NULL);
+  //   ios_base::sync_with_stdio(false);
+  //   cin.tie(NULL);
+  //   cout.tie(NULL);
   int n, k;
-  cin >> n >> k;
+  //   cin >> n >> k;
+  scanf("%d %d", &n, &k);
 
   vector<int> vec(n);
 
-  for (int i = 0; i < n; i++) cin >> vec[i];
+  //   for (int i = 0; i < n; i++) cin >> vec[i];
+  for (int i = 0; i < n; i++) scanf("%d", &vec[i]);
   quickSort(vec, 0, n - 1, k - 1);
 }
 

@@ -2,8 +2,7 @@
 #include <vector>
 
 using namespace std;
-// 병합 정렬 -> O(nlog)
-// “버블 정렬에서 swap 횟수와 병합정렬에서 원소간의 이동하는 거리는 같다.”
+
 static vector<int> vec;
 static vector<int> tmp;
 static long cnt = 0;
@@ -15,23 +14,23 @@ void merge_sort(int start, int end) {
   merge_sort(start, mid);
   merge_sort(mid + 1, end);
 
-  for (int i = start; i <= end; i++) tmp[i] = vec[i];  // 복사
+  for (int i = start; i <= end; i++) tmp[i] = vec[i];
 
   int k = start;
   int i = start;
   int j = mid + 1;
 
-  while (i <= mid && j <= end) {  // 두 그룹 병합 로직 -> 정렬
+  while (i <= mid && j <= end) {
     if (tmp[i] > tmp[j]) {
-      vec[k] = tmp[i];
-      cnt = cnt + j - k;  // 이동 거리
+      vec[k] = tmp[j];
+      cnt = cnt + (mid - i + 1);  // 이동 거리 계산
       k++;
       j++;
     } else {
-      vec[k++] = tmp[j++];
+      vec[k++] = tmp[i++];
     }
   }
-  // 남은 값 넣어주기
+
   while (i <= mid) vec[k++] = tmp[i++];
   while (j <= end) vec[k++] = tmp[j++];
 }
@@ -52,11 +51,9 @@ int main() {
   }
 
   cnt = 0;
-  merge_sort(1, n);  // 병합 정렬
+  merge_sort(1, n);
 
   cout << cnt << "\n";
 
-  //   for (int i = 1; i <= n; i++) {
-  // cout << vec[i] << "\n";
-  //   }
+  return 0;
 }

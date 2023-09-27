@@ -3,77 +3,64 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.StringTokenizer;
 
-// 병합 정렬을 학습하자
 public class Doit_020 {
 
-    private static void swap(int[] arr, int a, int b) {
-        int tmp = arr[a];
-        arr[a] = arr[b];
-        arr[b] = tmp;
-    }
-
-    private static int getPartition(int[] arr, int left, int right) {
-        if (left + 1 == right) {
-            if (arr[left] > arr[right]) {
-                swap(arr, left, right);
-            }
-            return right;
-        }
-
-        int mid = (left + right) / 2;
-        swap(arr, left, mid);
-        int pivot = arr[left];
-        int start = left + 1;
-        int end = right;
-
-        while (start <= end) {
-            while (pivot < arr[end] && end > 0) {
-                end--;
-            }
-            while (/*start < end*/ start < arr.length - 1 && arr[start] < pivot) {
-                start++;
-            }
-            if (start <= end) {
-                swap(arr, start++, end--);
-            }
-        }
-        arr[left] = arr[end];
-        arr[end] = pivot;
-        return (end);
-    }
-
-    public static void quickSort(int[] arr, int left, int right, int K) {
-        int partition = getPartition(arr, left, right);
-
-        if (partition == K - 1) {
-            return;
-        }  else if (partition < K - 1) {
-            quickSort(arr, partition +  1, right, K);
-        } else {
-            quickSort(arr, left, partition - 1, K);
-        }
-
-    }
-
+    private static int[] arr;
+    private static int[] tmp;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());
-        int K = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(br.readLine());
 
-        int[] arr = new int[N];
-        st = new StringTokenizer(br.readLine());
+        arr = new int[N];
+        tmp = new int[N];
         for (int idx = 0; idx < N; idx++) {
-            arr[idx] = Integer.parseInt(st.nextToken());
+            arr[idx] = Integer.parseInt(br.readLine());
         }
 
-        quickSort(arr, 0, N-1, K);
-        bw.write(String.valueOf(arr[K - 1]));
+        mergeSort(0, N - 1);
+        for (int idx = 0; idx < N; idx++) {
+            bw.write(String.valueOf(arr[idx]));
+            bw.newLine();
+        }
         bw.flush();
         bw.close();
-
+    }
+    private static void mergeSort(int start, int end) {
+        if (start < end) {
+            int mid = (start + end) / 2;
+            mergeSort(start, mid);
+            mergeSort(mid + 1, end);
+            merge(start, mid, end);
+        }
+    }
+    private static void merge(int start, int mid, int end) {
+        int index = start;
+        int pointer1 = start;
+        int pointer2 = mid + 1;
+        while (pointer1 <= mid && pointer2 <= end) {
+            if (arr[pointer1] <= arr[pointer2]) {
+                tmp[index] = arr[pointer1];
+                pointer1++;
+            } else {
+                tmp[index] = arr[pointer2];
+                pointer2++;
+            }
+            index++;
+        }
+        while (pointer1 <= mid) {
+            tmp[index] = arr[pointer1];
+            index++;
+            pointer1++;
+        }
+        while (pointer2 <= end) {
+            tmp[index] = arr[pointer2];
+            index++;
+            pointer2++;
+        }
+        for (int i = start; i <= end; i++) {
+            arr[i] = tmp[i];
+        }
     }
 }

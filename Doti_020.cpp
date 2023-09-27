@@ -24,3 +24,5 @@ int main() {
   sort(v.begin(), v.end());  // 벡터를 오름차순으로 정렬
   for (int i = 0; i < v.size(); i++) cout << v[i] << "\n";  // 출력
 }
+
+//Doti 조금 불편해요ㅋㅋ

@@ -36,10 +36,7 @@ int main()
       bool found = false;
       if (!s.empty())
       {
-        if (x == s.top()) // 뽑을 수가 이미 top에 있으면
-        {
-          found = true;
-        }
+        if (x == s.top()) found = true;
         s.pop();
         ans.push_back('-');
       }

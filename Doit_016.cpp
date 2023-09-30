@@ -23,17 +23,10 @@ int main()
     
   sort(sorted, sorted + n); //pair 에 <값, 인덱스> 를 담아 정렬.
 
-  int diff[500002];
   int ans = -1;
-  for (int i = 0; i < n; i++)
-  {
-    diff[i] = i - sorted[i].second; 
-    //정렬 완료 후 인덱스와 처음 인덱스의 차이를 구하면, 음수인 것들이 
-    //왼쪽으로 이동한 아이들임을 알 수 있음. 그러니 음수 차이를 가진 애들중 가장 큰 값이
-    //루프문을 돈 횟수가 된당!
-    if (diff[i] <= 0 && abs(diff[i]) > ans) // 음수중 절대값 제일 큰걸 답으로 선택
-      ans = abs(diff[i]);
-  }
+  for (int i = 0; i < n; i++) ans = ans > sorted[i].second - i ? ans : sorted[i].second - i;
+// 또는 max 함수 사용
+  for (int i = 0; i < n; i++) ans = max(ans, sorted[i].second - i);
   cout<<ans+1;
   return 0; 
 }
